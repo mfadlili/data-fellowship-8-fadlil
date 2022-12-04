@@ -1,9 +1,24 @@
-SELECT date,
+-- Copy table to project.dataset
+CREATE OR REPLACE TABLE
+lively-infinity-370008.datasets.ecommerce_transaction AS
+SELECT *, PARSE_DATE("%Y%m%d", date) as date_fix FROM `data-to-insights.ecommerce.rev_transactions`;
+
+-- Create Partition and Cluster
+CREATE OR REPLACE TABLE
+lively-infinity-370008.datasets.ecommerce_transaction_partitioned
+PARTITION BY date_fix
+CLUSTER BY
+geoNetwork_country, channelGrouping
+AS
+SELECT * FROM `lively-infinity-370008.datasets.ecommerce_transaction`;
+
+-- Solve Problems
+SELECT date_fix,
        ARRAY_AGG(STRUCT(geoNetwork_country,channelGrouping,total_transaction)
                 ORDER BY geoNetwork_country,channelGrouping) AS details
-FROM (SELECT date, geoNetwork_country, channelGrouping, SUM(totals_transactions) as total_transaction
-      FROM `data-to-insights.ecommerce.rev_transactions`
+FROM (SELECT date_fix, geoNetwork_country, channelGrouping, SUM(totals_transactions) as total_transaction
+      FROM `lively-infinity-370008.datasets.ecommerce_transaction_partitioned`
       WHERE geoNetwork_country NOT LIKE '(not set)'
       GROUP BY 1,2,3) as tab1
-GROUP BY date
-ORDER BY date;
+GROUP BY date_fix
+ORDER BY date_fix;
