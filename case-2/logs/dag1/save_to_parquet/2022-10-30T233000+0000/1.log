@@ -1,0 +1,24 @@
+[2022-12-04 09:59:00,771] {taskinstance.py:1032} INFO - Dependencies all met for <TaskInstance: dag1.save_to_parquet scheduled__2022-10-30T23:30:00+00:00 [queued]>
+[2022-12-04 09:59:00,928] {taskinstance.py:1032} INFO - Dependencies all met for <TaskInstance: dag1.save_to_parquet scheduled__2022-10-30T23:30:00+00:00 [queued]>
+[2022-12-04 09:59:00,952] {taskinstance.py:1238} INFO - 
+--------------------------------------------------------------------------------
+[2022-12-04 09:59:00,952] {taskinstance.py:1239} INFO - Starting attempt 1 of 2
+[2022-12-04 09:59:00,953] {taskinstance.py:1240} INFO - 
+--------------------------------------------------------------------------------
+[2022-12-04 09:59:01,138] {taskinstance.py:1259} INFO - Executing <Task(PythonOperator): save_to_parquet> on 2022-10-30 23:30:00+00:00
+[2022-12-04 09:59:01,167] {standard_task_runner.py:52} INFO - Started process 3084 to run task
+[2022-12-04 09:59:01,284] {standard_task_runner.py:76} INFO - Running: ['***', 'tasks', 'run', 'dag1', 'save_to_parquet', 'scheduled__2022-10-30T23:30:00+00:00', '--job-id', '2763', '--raw', '--subdir', 'DAGS_FOLDER/AirflowClean2.py', '--cfg-path', '/tmp/tmp1ekbikhz', '--error-file', '/tmp/tmp1noh3_qj']
+[2022-12-04 09:59:01,293] {standard_task_runner.py:77} INFO - Job 2763: Subtask save_to_parquet
+[2022-12-04 09:59:02,633] {logging_mixin.py:109} INFO - Running <TaskInstance: dag1.save_to_parquet scheduled__2022-10-30T23:30:00+00:00 [running]> on host 9e44869ff3ef
+[2022-12-04 09:59:03,202] {taskinstance.py:1426} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=Fadlil
+AIRFLOW_CTX_DAG_ID=dag1
+AIRFLOW_CTX_TASK_ID=save_to_parquet
+AIRFLOW_CTX_EXECUTION_DATE=2022-10-30T23:30:00+00:00
+AIRFLOW_CTX_DAG_RUN_ID=scheduled__2022-10-30T23:30:00+00:00
+[2022-12-04 09:59:03,336] {python.py:175} INFO - Done. Returned value was: None
+[2022-12-04 09:59:04,234] {taskinstance.py:1277} INFO - Marking task as SUCCESS. dag_id=dag1, task_id=save_to_parquet, execution_date=20221030T233000, start_date=20221204T095900, end_date=20221204T095904
+[2022-12-04 09:59:04,672] {local_task_job.py:154} INFO - Task exited with return code 0
+[2022-12-04 09:59:04,969] {local_task_job.py:264} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2022-12-04 09:59:05,149] {dagrun.py:545} INFO - Marking run <DagRun dag1 @ 2022-10-30 23:30:00+00:00: scheduled__2022-10-30T23:30:00+00:00, externally triggered: False> successful
+[2022-12-04 09:59:05,183] {dagrun.py:605} INFO - DagRun Finished: dag_id=dag1, execution_date=2022-10-30 23:30:00+00:00, run_id=scheduled__2022-10-30T23:30:00+00:00, run_start_date=2022-12-04 09:58:39.181694+00:00, run_end_date=2022-12-04 09:59:05.183311+00:00, run_duration=26.001617, state=success, external_trigger=False, run_type=scheduled, data_interval_start=2022-10-30 23:30:00+00:00, data_interval_end=2022-10-30 23:40:00+00:00, dag_hash=dcc10ff25aa2b772f0ff316f834ef601

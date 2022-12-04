@@ -1,0 +1,2 @@
+[2022-12-04 02:47:23,546] {taskinstance.py:1026} INFO - Dependencies not met for <TaskInstance: dag1.save_to_parquet scheduled__2022-10-26T22:50:00+00:00 [failed]>, dependency 'Task Instance State' FAILED: Task is in the 'failed' state.
+[2022-12-04 02:47:23,910] {local_task_job.py:99} INFO - Task is not able to be run
