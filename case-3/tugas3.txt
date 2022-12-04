@@ -1,0 +1,9 @@
+SELECT date,
+       ARRAY_AGG(STRUCT(geoNetwork_country,channelGrouping,total_transaction)
+                ORDER BY geoNetwork_country,channelGrouping) AS details
+FROM (SELECT date, geoNetwork_country, channelGrouping, SUM(totals_transactions) as total_transaction
+      FROM `data-to-insights.ecommerce.rev_transactions`
+      WHERE geoNetwork_country NOT LIKE '(not set)'
+      GROUP BY 1,2,3) as tab1
+GROUP BY date
+ORDER BY date;

@@ -1,0 +1,5 @@
+{
+  "type": "service_account",
+  "client_email": "your_client_email",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "private_key": "your_private_key"}
