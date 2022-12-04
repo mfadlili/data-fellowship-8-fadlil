@@ -19,25 +19,28 @@ BIGQUERY_DATASET = "us_population"
             
 def get_data(ti): 
     data = requests.get('https://datausa.io/api/data?drilldowns=Nation&measures=Population')
+    id_nation = []
     nation = []
+    id_year = []
     year = []
     population = []
+    slug_nation = []
 
     for i in data.json()['data']:
+        id_nation.append(i['ID Nation'])
         nation.append(i['Nation'])
+        id_year.append(int(i['ID Year']))
         year.append(int(i['Year']))
         population.append(int(i['Population']))
+        slug_nation.append(i["Slug Nation"])
 
-    ti.xcom_push(key = 'nation', value = nation)
-    ti.xcom_push(key = 'year', value = year)
-    ti.xcom_push(key = 'population', value = population)
+    result = {'ID Nation':id_nation, 'Nation':nation, "ID Year":id_year, "Year":year, "Population":population, "Slug Nation":slug_nation}
+    ti.xcom_push(key = 'parsing_result', value = result)
 
 def to_csv(ti, csv_filename):
-    nation = ti.xcom_pull(task_ids='get_data', key='nation')
-    year = ti.xcom_pull(task_ids='get_data', key='year')
-    population = ti.xcom_pull(task_ids='get_data', key='population')
-    df = pd.DataFrame({'nation':nation, 'year':year, 'population':population})
-    df.to_csv('/opt/airflow/dags/'+csv_filename)
+    dict_result = ti.xcom_pull(task_ids='get_data', key='parsing_result')
+    df = pd.DataFrame(dict_result)
+    df.to_csv('/opt/airflow/dags/'+csv_filename, index=False)
 
 def to_parquet(csv_filename, parquet_filename):
     df = pd.read_csv('/opt/airflow/dags/'+csv_filename)
@@ -110,7 +113,7 @@ with DAG('dag1',
             "tableReference": {
                 "projectId": PROJECT_ID,
                 "datasetId": BIGQUERY_DATASET,
-                "tableId": "external_table",
+                "tableId": "us_pop_yearly",
             },
             "externalDataConfiguration": {
                 "sourceFormat": "PARQUET",
