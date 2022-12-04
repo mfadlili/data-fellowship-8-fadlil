@@ -13,12 +13,14 @@ bigquery_external_table_task
 ## How to run the query
 1. Clone this repository to your computer.
 2. Go to https://cloud.google.com/iam/docs/creating-managing-service-accounts to create gcp-service-accounts-credentials to get the google credentials, save it as google_credentials.json in  C:\Users\username\.google\credentials.
-3. Open your terminal and run docker compose using this command:
+3. Don't forget to change GCP_PROJECT_ID, GCP_GCS_BUCKET in the .env and docker-compose.yaml, change the value based on your project id and your target bucket name in the Google Cloud Storage.
+4. Go to Google BigQuery and create a dataset inside your project, open dags folder and open AirflowClean2.py, change the BIGQUERY_DATASET variable to your dataset name.
+5. Open your terminal and run docker compose using this command:
     ``` bash
         docker compose -f docker-compose.yaml up
     ```
-4. Open your browser and go to http://localhost:8080/home, input the username (airflow) and password (airflow).
-5. Now you can see list of DAG on the airflow interface, run dag1.
+6. Open your browser and go to http://localhost:8080/home, input the username (airflow) and password (airflow).
+7. Now you can see list of DAG on the airflow interface, run dag1.
 
 ## Result
  ![](query_result1.png)
