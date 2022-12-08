@@ -1,0 +1,67 @@
+version: 2
+sources:
+  - name: stagging_trip
+    description: dataset from kaggle about nyc yellow trip 
+    database: lively-infinity-370008
+    schema: yellow_trip_dataset_2019
+    tables:
+      - name: trip
+        description: yellow taxi travel history table in nyc in 2019
+      - name: location
+        description: locations refers to locationID
+
+models:
+  - name: trip
+    columns:
+      - name: VendorID
+        tests:
+          - not_null
+      - name: tpep_pickup_datetime
+        tests:
+          - not_null
+      - name: tpep_dropoff_datetime
+        tests:
+          - not_null
+      - name: passenger_count
+        tests:
+          - not_null
+      - name: trip_distance
+        tests:
+          - not_null
+      - name: RatecodeID
+        tests:
+          - not_null
+      - name: store_and_fwd_flag
+        tests:
+          - not_null
+      - name: PULocationID
+        tests:
+          - not_null
+      - name: payment_type
+        tests:
+          - not_null
+      - name: fare_amount
+        tests:
+          - not_null
+      - name: extra
+        tests:
+          - not_null
+      - name: mta_tax
+        tests:
+          - not_null
+      - name: tip_amount
+        tests:
+          - not_null
+      - name: tolls_amount
+        tests:
+          - not_null
+      - name: improvement_surcharge
+        tests:
+          - not_null
+      - name: total_amount
+        tests:
+          - not_null
+      - name: congestion_surcharge
+        tests:
+          - not_null
+    
