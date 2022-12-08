@@ -19,4 +19,4 @@ Because the table has been transformed and the missing data has been inputted wi
 ## Result
  ![](pict3.png)
  ![](pict.png)
- ![](pict1.png)
+ ![](pict2.png)
