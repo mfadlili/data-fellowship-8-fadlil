@@ -1,4 +1,4 @@
-# Case 3 Data Fellowship 8 IYKRA
+# Case 4 Data Fellowship 8 IYKRA
 
 ## Problems
 Create a dbt transformation process for 2019 yellow trip data from raw data source, to staging data, to
