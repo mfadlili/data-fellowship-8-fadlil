@@ -7,8 +7,8 @@ Create a dashboard with your own choice of tool with the yellow taxi trip record
 pressumably is already there, or if not,
 
 available to be downloaded here:
-https://www.kaggle.com/datasets/microize/newyork-yellow-taxi-trip-data-2020-2019?resource=downlo
-ad or https://www1.nyc.gov/site/tlc/about/tlc-trip-record-data.page).
+https://www.kaggle.com/datasets/microize/newyork-yellow-taxi-trip-data-2020-2019?resource=download 
+or https://www1.nyc.gov/site/tlc/about/tlc-trip-record-data.page).
 
 Put the dashboard url and the screenshot of the dashboard in the repo, with a little explanation about
 the dashboard you made.
@@ -59,4 +59,8 @@ Link : https://datastudio.google.com/s/r_pKHlerFSM
 
 ![](8.png)
 ![](9.png)
+
+9. You have completed steps to install PySpark on Windows, open Command Prompt and type "pyspark --version", you can see the spark version like this:
+
+![](10.png)
 
