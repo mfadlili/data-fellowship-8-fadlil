@@ -17,8 +17,16 @@ Create a guide to install pyspark and put it in your repo. Print its version, sc
 screenshot in the repo.
 
 ## Data Visualization Result
-Link :
+Link : https://datastudio.google.com/s/r_pKHlerFSM
 
 
 
-## How to Install PySpark
+## How to Install PySpark in Windows?
+1. You have to install Python, choose based on the version on the following link : https://www.python.org/downloads/. 
+   Install the downloaded file, don't forget to choose "Add Python to environment variable" during the installation.
+   ![](pict1.png)
+
+2. Download Java JDK on the following link : https://www.oracle.com/java/technologies/downloads/. Install the downloaded file.
+
+3. On the windows search bar, search "Edit the system environment variables" and click it, the System Properties window will appear and click "Environment Variables".
+   ![](pict2.png)
