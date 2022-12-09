@@ -31,4 +31,5 @@ Link : https://datastudio.google.com/s/r_pKHlerFSM
 2. Download Java JDK on the following link : https://www.oracle.com/java/technologies/downloads/. Install the downloaded file.
 
 3. On the windows search bar, search "Edit the system environment variables" and click it, the System Properties window will appear and click "Environment Variables".
+
 ![](2.png)
