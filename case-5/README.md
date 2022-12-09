@@ -26,10 +26,18 @@ Link : https://datastudio.google.com/s/r_pKHlerFSM
 ## How to Install PySpark in Windows?
 1. You have to install Python, choose based on the version on the following link : https://www.python.org/downloads/. 
    Install the downloaded file, don't forget to choose "Add Python to environment variable" during the installation.
+
 ![](1.png)
 
 2. Download Java JDK on the following link : https://www.oracle.com/java/technologies/downloads/. Install the downloaded file.
 
-3. On the windows search bar, search "Edit the system environment variables" and click it. 
+3. In the windows search bar, search "Edit the system environment variables" and click it. 
    The System Properties window will appear and click "Environment Variables".
+
 ![](2.png)
+
+4. In the "System variables" section, click "New". Create variable "JAVA_HOME" and "Variable value" as "C:\Program Files\Java\jdk1.8.0_333".
+   This is the location of your Java file.
+
+![](3.png)
+![](4.png)
