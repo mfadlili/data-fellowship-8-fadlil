@@ -41,3 +41,22 @@ Link : https://datastudio.google.com/s/r_pKHlerFSM
 
 ![](3.png)
 ![](4.png)
+
+5. In the "User variables" section, click "PATH" variable, a new window ("Edit environment variable") will appear, click New and fill the new line with the location of Java bin file ("C:\Program Files\Java\jdk1.8.0_333\bin")
+
+![](5.png)
+![](6.png)
+
+6. Download Apache Spark on this link : https://spark.apache.org/downloads.html, select the latest Spark release and "Pre-built for Apache Hadoop 2.7" for the package type. 
+   You can make a new folder called 'spark' in the C directory and extract the given file by using 'Winrar'
+
+![](7.png)
+
+7. Download Winutils for Apache Hadoop 2.7 on this link: https://github.com/steveloughran/winutils/blob/master/hadoop-2.7.1/bin/winutils.exe
+   Create folder "winutils" on the C directory, create folder "bin" inside it and put the downloaded file "winutils.exe" inside the bin folder.
+
+8. Create 2 system new environment variables (the same way as step 4), HADOOP_HOME and SPARK_HOME, like the following pictures:
+
+![](8.png)
+![](9.png)
+
