@@ -21,6 +21,9 @@ screenshot in the repo.
 ## Data Visualization Result
 Link : https://datastudio.google.com/s/r_pKHlerFSM
 
+Create a dashboard about the number of trips, number of passengers and total travel time throughout 2019.
+
+![](11.png)
 
 
 ## How to Install PySpark in Windows?
