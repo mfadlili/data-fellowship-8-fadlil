@@ -26,8 +26,13 @@ def receipt(err,msg):
         
 #####################
 
-bearer_token = "your_bearer_token_here"
+with open("bearer.json", "r") as f:
+    data = json.load(f)
+    bearer_token = data["bearer_token"]
 
+with open("input.json", "r") as f:
+    input_data = json.load(f)
+    search = input_data["search"]
 
 def bearer_oauth(r):
     """
@@ -38,11 +43,58 @@ def bearer_oauth(r):
     r.headers["User-Agent"] = "v2FilteredStreamPython"
     return r
 
+def get_rules():
+    response = requests.get(
+        "https://api.twitter.com/2/tweets/search/stream/rules", auth=bearer_oauth
+    )
+    if response.status_code != 200:
+        raise Exception(
+            "Cannot get rules (HTTP {}): {}".format(response.status_code, response.text)
+        )
+    print(json.dumps(response.json()))
+    return response.json()
+
+
+def delete_all_rules(rules):
+    if rules is None or "data" not in rules:
+        return None
+
+    ids = list(map(lambda rule: rule["id"], rules["data"]))
+    payload = {"delete": {"ids": ids}}
+    response = requests.post(
+        "https://api.twitter.com/2/tweets/search/stream/rules",
+        auth=bearer_oauth,
+        json=payload
+    )
+    if response.status_code != 200:
+        raise Exception(
+            "Cannot delete rules (HTTP {}): {}".format(
+                response.status_code, response.text
+            )
+        )
+    print(json.dumps(response.json()))
+
+def set_rules(search):
+
+    sample_rules = [
+
+        {"value": search},
+    ]
+    payload = {"add": sample_rules}
+    response = requests.post(
+        "https://api.twitter.com/2/tweets/search/stream/rules",
+        auth=bearer_oauth,
+        json=payload,
+    )
+    if response.status_code != 201:
+        raise Exception(
+            "Cannot add rules (HTTP {}): {}".format(response.status_code, response.text)
+        )
+    print(json.dumps(response.json()))
 
 def main():
-
     response = requests.get(
-        "https://api.twitter.com/2/tweets/sample/stream", auth=bearer_oauth, stream=True
+        "https://api.twitter.com/2/tweets/search/stream", auth=bearer_oauth, stream=True
     )
 
     for response_line in response.iter_lines():
@@ -56,4 +108,7 @@ def main():
             time.sleep(3)
         
 if __name__ == '__main__':
+    rules = get_rules()
+    delete = delete_all_rules(rules)
+    set_rules(search)
     main()
