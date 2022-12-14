@@ -26,7 +26,7 @@ def receipt(err,msg):
         
 #####################
 
-bearer_token = "AAAAAAAAAAAAAAAAAAAAACLxYAEAAAAAn%2FvfZ%2BgGDX52Vpp8xvaaEny7D3g%3DJSbX7jp7hmoGTDcTnU9CXwcLxqCM01Bq6MTbB1wxR0vRL73EeI"
+bearer_token = "your_bearer_token_here"
 
 
 def bearer_oauth(r):
