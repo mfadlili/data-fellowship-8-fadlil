@@ -1,4 +1,4 @@
-# Case 7 Data Fellowship 8 IYKRA
+# Case 8 Data Fellowship 8 IYKRA
 
 ## Problems
 Build a postgresql database and ksqldb server, can use
@@ -43,6 +43,8 @@ INSERT INTO employees (id, name, age, division) VALUES
 (1, 'Aldi', 22, 'HR'),
 (2, 'Bagus', 25, 'Marketing');
 ```
+![](img/1.png)<br>
+![](img/2.png)<br>
 
 5. Open Command Prompt and type this command below to start KSQLDB interactive CLI:
 ```
@@ -86,8 +88,9 @@ CREATE STREAM stream_table (
 )
 WITH (kafka_topic='jdbc_employees', value_format='json');
 ```
+![](img/5.png)<br>
 
-8. Create a table based on employees table on KSQLDB using this query below:
+8. Create a table based on stream_table on KSQLDB using this query below:
 
 ```
 CREATE TABLE final_table AS
@@ -128,3 +131,6 @@ INSERT INTO employees (id, name, age, division) VALUES
 13. See the result in the first and second KSQLDB CLI, like the picture below:
 ![](img/6.png)<br>
 ![](img/7.png)<br>
+
+This is the query result of employee table on PostgreSQL:
+![](img/8.png)<br>
