@@ -18,9 +18,9 @@ capture stream and table results in ksqldb, as well as sql scripts in postgresql
 
 ## How to run the program?
 
-1. Clone this repository
+1. Clone this repository.
 
-2. Open Command Prompt and type this command below:
+2. Open Command Prompt in the directory where you clone this repository and type this command below and wait until the process finish:
 ```
 docker-compose up
 ```
@@ -65,12 +65,14 @@ CREATE SOURCE CONNECTOR jdbc_source WITH (
   'key'                      = 'id',
   'key.converter'            = 'org.apache.kafka.connect.converters.IntegerConverter');
 ```
+![](img/3.png)<br>
 
 6. Don't forget to check the topics using this query below, if the connection is success, a topic with name jdbc_employees will appear:
 
 ```
 SHOW TOPICS;
 ```
+![](img/4.png)<br>
 
 7. Create a stream based on employees table on KSQLDB using this query below:
 
