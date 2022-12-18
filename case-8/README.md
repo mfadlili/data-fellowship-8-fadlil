@@ -133,4 +133,5 @@ INSERT INTO employees (id, name, age, division) VALUES
 ![](img/7.png)<br>
 
 This is the query result of employee table on PostgreSQL:
+
 ![](img/8.png)<br>
