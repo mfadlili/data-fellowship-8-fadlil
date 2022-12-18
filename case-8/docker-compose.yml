@@ -2,18 +2,8 @@
 version: '2'
 
 services:
-  postgres:
-    image: postgres
-    container_name: local_pgdb
-    restart: always
-    ports:
-      - "5432:5432"
-    environment:
-      POSTGRES_USER: admin
-      POSTGRES_PASSWORD: admin
-
   zookeeper:
-    image: confluentinc/cp-zookeeper:7.2.0
+    image: confluentinc/cp-zookeeper:latest
     hostname: zookeeper
     container_name: zookeeper
     ports:
@@ -23,7 +13,7 @@ services:
       ZOOKEEPER_TICK_TIME: 2000
 
   broker:
-    image: confluentinc/cp-kafka:7.2.0
+    image: confluentinc/cp-enterprise-kafka:latest
     hostname: broker
     container_name: broker
     depends_on:
@@ -41,7 +31,7 @@ services:
       KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
 
   ksqldb-server:
-    image: confluentinc/cp-ksqldb-server:7.2.0
+    image: confluentinc/ksqldb-server:0.8.1
     hostname: ksqldb-server
     container_name: ksqldb-server
     depends_on:
@@ -53,9 +43,24 @@ services:
       KSQL_BOOTSTRAP_SERVERS: broker:9092
       KSQL_KSQL_LOGGING_PROCESSING_STREAM_AUTO_CREATE: "true"
       KSQL_KSQL_LOGGING_PROCESSING_TOPIC_AUTO_CREATE: "true"
+      KSQL_KSQL_CONNECT_WORKER_CONFIG: "/connect/connect.properties"
+      KSQL_CONNECT_GROUP_ID: "ksql-connect-cluster"
+      KSQL_CONNECT_BOOTSTRAP_SERVERS: "broker:9092"
+      KSQL_CONNECT_KEY_CONVERTER: "org.apache.kafka.connect.storage.StringConverter"
+      KSQL_CONNECT_VALUE_CONVERTER: "org.apache.kafka.connect.json.JsonConverter"
+      KSQL_CONNECT_VALUE_CONVERTER_SCHEMAS_ENABLE: "false"
+      KSQL_CONNECT_CONFIG_STORAGE_TOPIC: "ksql-connect-configs"
+      KSQL_CONNECT_OFFSET_STORAGE_TOPIC: "ksql-connect-offsets"
+      KSQL_CONNECT_STATUS_STORAGE_TOPIC: "ksql-connect-statuses"
+      KSQL_CONNECT_CONFIG_STORAGE_REPLICATION_FACTOR: 1
+      KSQL_CONNECT_OFFSET_STORAGE_REPLICATION_FACTOR: 1
+      KSQL_CONNECT_STATUS_STORAGE_REPLICATION_FACTOR: 1
+      KSQL_CONNECT_PLUGIN_PATH: "/usr/share/kafka/plugins"
+    volumes:
+      - ./confluent-hub-components/confluentinc-kafka-connect-jdbc:/usr/share/kafka/plugins/jdbc
 
   ksqldb-cli:
-    image: confluentinc/cp-ksqldb-cli:7.2.0
+    image: confluentinc/ksqldb-cli:0.8.1
     container_name: ksqldb-cli
     depends_on:
       - broker
@@ -63,19 +68,11 @@ services:
     entrypoint: /bin/sh
     tty: true
 
-  connect:
-    image: mtpatter/debezium-connect  # built from debezium/connect:0.10 
-    depends_on:
-      - zookeeper
-      - broker
-      - postgres
+  postgres:
+    image: postgres:12
+    hostname: postgres
+    container_name: postgres
     ports:
-      - 8083:8083
+      - "5432:5432"
     environment:
-        GROUP_ID: 1
-        CONFIG_STORAGE_TOPIC: my-connect-configs
-        OFFSET_STORAGE_TOPIC: my-connect-offsets
-        ADVERTISED_HOST_NAME: connect
-        BOOTSTRAP_SERVERS: kafka:9092
-        CONNECT_INTERNAL_KEY_CONVERTER: org.apache.kafka.connect.json.JsonConverter
-        CONNECT_INTERNAL_VALUE_CONVERTER: org.apache.kafka.connect.json.JsonConverter
+      POSTGRES_PASSWORD: password
