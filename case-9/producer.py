@@ -6,8 +6,8 @@ from time import sleep
 
 
 def load_avro_schema_from_file():
-    key_schema = avro.load("bitcoin_price_key.avsc")
-    value_schema = avro.load("bitcoin_price_value.avsc")
+    key_schema = avro.load("avro/bitcoin_price_key.avsc")
+    value_schema = avro.load("avro/bitcoin_price_value.avsc")
 
     return key_schema, value_schema
 

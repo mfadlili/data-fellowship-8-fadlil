@@ -9,9 +9,9 @@ If possible load to Big Query, will be a plus for this task.
 
 1. Clone this repository
 
-2. 
+2. Open table_id.json in json folder, change the table id with "your_project_ID.your_dataset_name.your_table_ID".
 
-3. 
+3. Still in the json folder, change key.json with your own key, don't forget to change the file name to key.json
 
 4. Open Command Prompt in this directory, and type this command below to dockerize the Confluent Kafka:
 
@@ -39,4 +39,8 @@ python3 consumer.py
 
 8. If you failed to install the dependencies in step 5, you can use Windows Subsystem for Linux (WSL) as terminal in steps 5 through 7 instead of using Command Prompt.
 
-9. Open your browser and enter http://localhost:9021/clusters to see the Control Center of Confluent Kafka.
+## Result
+
+![](img/1.png)<br>
+
+![](img/2.png)<br>
